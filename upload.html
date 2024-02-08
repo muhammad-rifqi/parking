@@ -139,7 +139,8 @@
               <div class="panel-heading panel-heading-divider">Input File<span class="panel-subtitle">These are the
                   input file options</span></div>
               <div class="panel-body">
-                <form action="#" style="border-radius: 0px;" enctype="multipart/form-data" onsubmit="importDataParkir(); return false;" class="form-horizontal group-border-dashed">
+                <form action="#" style="border-radius: 0px;" enctype="multipart/form-data"
+                  onsubmit="importDataParkir(); return false;" class="form-horizontal group-border-dashed">
                   <div class="form-group">
                     <label class="col-sm-3 control-label">Button File Input</label>
                     <div class="col-sm-6">
@@ -147,13 +148,13 @@
                         class="inputfile">
                       <label for="file-1" class="btn-default"> <i class="mdi mdi-upload"></i><span>Browse files...
                         </span></label>
-                        <br />
+                      <br />
                       <p>
                         <button class="btn btn-primary w-100" id="btns" type="submit">Simpan</button>
                       </p>
                       <br />
                       <p>
-                        <h3 id="success"></h3>
+                      <h3 id="success"></h3>
                       </p>
                     </div>
                   </div>
@@ -252,25 +253,33 @@
     }
 
 
-    function importDataParkir(){
-        document.getElementById("success").innerHTML = 'Please Wait....';
-        document.getElementById("btns").disabled = true;
-        let filecsv = document.getElementById("file-1").files[0];
-        let fd = new FormData();
-            fd.append("filecsv", filecsv);
-        fetch('api.php?act=insert_csv', { 
-            method: "POST",
-            body: fd,
-        })
+    function importDataParkir() {
+      document.getElementById("success").innerHTML = 'Please Wait....';
+      document.getElementById("btns").disabled = true;
+      let filecsv = document.getElementById("file-1").files[0];
+      let fd = new FormData();
+      fd.append("filecsv", filecsv);
+      fetch('api.php?act=insert_csv', {
+        method: "POST",
+        body: fd,
+      })
         .then(response => response.json())
-        .then((data)=>{
-            console.log(data)
-            document.getElementById("success").innerHTML = 'Success Uploaded.';
-            document.getElementById("btns").disabled = false;
-            // window.location.reload();
+        .then((data) => {
+          console.log(data)
+          document.getElementById("success").innerHTML = 'Success Uploaded.';
+          document.getElementById("btns").disabled = false;
+
+          swal({
+            title: "Application Info",
+            text: data?.message,
+            icon: "info",
+          }).then(function (ddd) {
+            window.location.reload();
+          });
+
         }).catch((error) => {
-                    console.error(error);
-        });    
+          console.error(error);
+        });
 
     }
 

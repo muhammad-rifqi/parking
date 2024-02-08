@@ -70,6 +70,9 @@ if($_GET['act'] == 'insert_csv'){
     echo json_encode($response);
 }
 
+
+
+
 // $amount = '12345.67';
 
 // $formatter = new NumberFormatter('en_GB',  NumberFormatter::CURRENCY);
