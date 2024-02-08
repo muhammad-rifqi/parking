@@ -38,6 +38,10 @@ if ($_GET['act'] == 'profile') {
 
 
 if($_GET['act'] == 'insert_csv'){
+
+    header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Credentials: true");
+
     $lokasi_file = $_FILES['filecsv']['tmp_name'];
     if (!empty($lokasi_file)) {
         $csvFile = fopen($_FILES['filecsv']['tmp_name'], 'r');
@@ -53,11 +57,11 @@ if($_GET['act'] == 'insert_csv'){
                     $gross = $getData[5];
                     $fee = $getData[6];
                     $net_rate = $getData[7];
-                    $number_plate = $getData[8];
-                    $receipt = $getData[9];
-                    $reference = $getData[10];
+                    $number_plate = $getData[9];
+                    $receipt = $getData[10];
+                    $reference = $getData[11];
 
-                    $insert =  mysqli_query($koneksi, "insert into tbl_transaction (id_site,user_group, entry_start, entry_stop, duration, gross, fee, net_rate, number_plate, receipt, reference) VALUES ('" .$id_site. "', '" . $user_group . "', '" .$entry_start. "', '" .$entry_stop. "', '" .$duration. "', '" .$gross. "', '" .$fee. "', '" .$net_rate. "', '" .$number_plate. "', '" .$receipt. "' ,'" .$reference. "')");  
+                    $insert =  mysqli_query($koneksi, "insert into tbl_transaction (id_site,user_group, entry_start, entry_stop, duration, gross, fee, net_rate, number_plate, receipt, reference) VALUES ('" .$id_site. "', '" . $user_group . "', '" .$entry_start. "', '" .$entry_stop. "', '" .$duration. "', '" .str_replace(array('$','.'), array('',''),$gross). "', '" .str_replace(array('$','.'), array('',''),$fee). "', '" .str_replace(array('$','.'), array('',''),$net_rate). "', '" .$number_plate. "', '" .$receipt. "' ,'" .$reference. "')");  
                         if($insert){
                             $response = ["message" => "success inserted"];
                         }else{
@@ -70,7 +74,19 @@ if($_GET['act'] == 'insert_csv'){
     echo json_encode($response);
 }
 
+if($_GET['act'] == 'site'){
 
+    header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Credentials: true");
+
+    $rows = array();
+    $sql = mysqli_query($koneksi, "select * from tbl_site");
+    while($data = mysqli_fetch_assoc($sql)){
+        $rows[] = $data;
+    }
+    echo json_encode($rows);
+
+}
 
 
 // $amount = '12345.67';
