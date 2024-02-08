@@ -119,4 +119,41 @@ if($_GET['act'] == 'detail_site'){
 
 }
 
+
+if($_GET['act'] == 'all_gross'){
+
+    header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Credentials: true");
+
+    $formatter = new NumberFormatter('en_US',  NumberFormatter::CURRENCY);
+    $sql = mysqli_query($koneksi, "SELECT SUM(gross) as jml FROM `tbl_transaction`");
+    $data = mysqli_fetch_assoc($sql);
+    echo json_encode(array("amount"=> $formatter->formatCurrency($data['jml'], 'USD')));
+
+}
+
+
+if($_GET['act'] == 'weekly_revenue'){
+
+    header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Credentials: true");
+
+    $formatter = new NumberFormatter('en_US',  NumberFormatter::CURRENCY);
+    $sql = mysqli_query($koneksi, "SELECT entry_start,SUM(gross) as jml FROM `tbl_transaction` where entry_start between '2023-12-30 14:20:00' and '2023-12-31 12:07:00'");
+    $data = mysqli_fetch_assoc($sql);
+    echo json_encode(array("amount"=> $formatter->formatCurrency($data['jml'], 'USD')));
+
+}
+
+
+if($_GET['act'] == 'weekly_transaction'){
+
+    header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Credentials: true");
+
+    $sql = mysqli_query($koneksi, "SELECT entry_start,COUNT(gross) as jml FROM `tbl_transaction` where entry_start between '2023-12-30 14:20:00' and '2023-12-31 12:07:00'");
+    $data = mysqli_fetch_assoc($sql);
+    echo json_encode(array("count"=> number_format($data['jml'])));
+
+}
 ?>
