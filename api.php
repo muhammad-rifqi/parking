@@ -37,46 +37,32 @@ if ($_GET['act'] == 'profile') {
 
 
 
-if($_GET['act'] == 'insert_owner_csv'){
+if($_GET['act'] == 'insert_csv'){
     $lokasi_file = $_FILES['filecsv']['tmp_name'];
     if (!empty($lokasi_file)) {
         $csvFile = fopen($_FILES['filecsv']['tmp_name'], 'r');
         // skip baris pertama
         fgetcsv($csvFile);
-            while (($getData = fgetcsv($csvFile, 1000, ",")) !== FALSE)
+            while (($getData = fgetcsv($csvFile, 10000, ",")) !== FALSE)
                 {
-                    $id = $getData[0];
-                    $kode_owner = $getData[1];            
-                    $nama = $getData[2];  
-                    $jenis_kelamin = $getData[3];           
-                    $alamat = $getData[4];
-                    $telpon = $getData[5];
-                    $email = $getData[6];
-                    $kelurahan = $getData[7];
-                    $kecamatan = $getData[8];
-                    $kota = $getData[9];
-                    $provinsi = $getData[10];
-                    $status = $getData[11];
-                    $id_pet = $getData[12];
-                    $no_wa = $getData[13];
+                    $id_site = $getData[0];
+                    $user_group = $getData[1];            
+                    $entry_start = $getData[2];  
+                    $entry_stop = $getData[3];           
+                    $duration = $getData[4];
+                    $gross = $getData[5];
+                    $fee = $getData[6];
+                    $net_rate = $getData[7];
+                    $number_plate = $getData[8];
+                    $receipt = $getData[9];
+                    $reference = $getData[10];
 
-                    $check = mysqli_query($koneksi, "select id, kode_owner from tbl_owner where kode_owner = '" .$kode_owner. "'");
-
-                    if (mysqli_num_rows($check) > 0){
-                       $update =  mysqli_query($koneksi, "update tbl_owner set kode_owner='" .$kode_owner. "',nama='" . $nama . "', jenis_kelamin='" . $jenis_kelamin . "', alamat='" . $alamat . "',telpon='" . $telpon . "', email = '" . $email . "', kelurahan = '" . $kelurahan . "' , kecamatan = '" . $kecamatan . "' ,  kota = '" . $kota . "', provinsi = '" . $provinsi . "', status = '" . $status . "' , id_pet = '" . $id_pet . "', no_wa = '" . $no_wa . "' where kode_owner = '" . $kode_owner . "'");  
-                            if($update){
-                                $response = ["message" => "success updated"];
-                            }else{
-                                $response = ["message" => "update data failed"];
-                            }
-                    }else{
-                        $insert =  mysqli_query($koneksi, "insert into tbl_owner (kode_owner,nama, jenis_kelamin, alamat, telpon, email, kelurahan, kecamatan, kota, provinsi, status, id_pet, no_wa) VALUES ('" .$kode_owner. "', '" . $nama . "', '" .$jenis_kelamin. "', '" .$alamat. "', '" .$telpon. "', '" .$email. "', '" .$kelurahan. "', '" .$kecamatan. "', '" .$kota. "', '" .$provinsi. "', '" .$status. "' ,'" .$id_pet. "','" .$no_wa. "')");  
-                            if($insert){
-                                $response = ["message" => "success inserted"];
-                            }else{
-                                $response = ["message" => "insert data failed"];
-                            }
-                    }
+                    $insert =  mysqli_query($koneksi, "insert into tbl_transaction (id_site,user_group, entry_start, entry_stop, duration, gross, fee, net_rate, number_plate, receipt, reference) VALUES ('" .$id_site. "', '" . $user_group . "', '" .$entry_start. "', '" .$entry_stop. "', '" .$duration. "', '" .$gross. "', '" .$fee. "', '" .$net_rate. "', '" .$number_plate. "', '" .$receipt. "' ,'" .$reference. "')");  
+                        if($insert){
+                            $response = ["message" => "success inserted"];
+                        }else{
+                            $response = ["message" => "insert data failed"];
+                        }
                 }
     } else {
         $response = ["message" => "failed_uploaded"];   

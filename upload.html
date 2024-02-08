@@ -139,23 +139,22 @@
               <div class="panel-heading panel-heading-divider">Input File<span class="panel-subtitle">These are the
                   input file options</span></div>
               <div class="panel-body">
-                <form action="#" style="border-radius: 0px;" class="form-horizontal group-border-dashed">
+                <form action="#" style="border-radius: 0px;" enctype="multipart/form-data" onsubmit="importDataParkir(); return false;" class="form-horizontal group-border-dashed">
                   <div class="form-group">
                     <label class="col-sm-3 control-label">Button File Input</label>
                     <div class="col-sm-6">
                       <input type="file" name="file-1" id="file-1" data-multiple-caption="{count} files selected"
-                        multiple class="inputfile">
+                        class="inputfile">
                       <label for="file-1" class="btn-default"> <i class="mdi mdi-upload"></i><span>Browse files...
                         </span></label>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label class="col-sm-3 control-label">Custom Button File Input</label>
-                    <div class="col-sm-6">
-                      <input type="file" name="file-2" id="file-2" data-multiple-caption="{count} files selected"
-                        multiple class="inputfile">
-                      <label for="file-2" class="btn-primary"> <i class="mdi mdi-upload"></i><span>Browse
-                          files...</span></label>
+                        <br />
+                      <p>
+                        <button class="btn btn-primary w-100" id="btns" type="submit">Simpan</button>
+                      </p>
+                      <br />
+                      <p>
+                        <h3 id="success"></h3>
+                      </p>
                     </div>
                   </div>
                 </form>
@@ -252,6 +251,28 @@
         });
     }
 
+
+    function importDataParkir(){
+        document.getElementById("success").innerHTML = 'Please Wait....';
+        document.getElementById("btns").disabled = true;
+        let filecsv = document.getElementById("file-1").files[0];
+        let fd = new FormData();
+            fd.append("filecsv", filecsv);
+        fetch('api.php?act=insert_csv', { 
+            method: "POST",
+            body: fd,
+        })
+        .then(response => response.json())
+        .then((data)=>{
+            console.log(data)
+            document.getElementById("success").innerHTML = 'Success Uploaded.';
+            document.getElementById("btns").disabled = false;
+            // window.location.reload();
+        }).catch((error) => {
+                    console.error(error);
+        });    
+
+    }
 
   </script>
 </body>
