@@ -76,6 +76,7 @@
           let m = months[date.getMonth()];
           let y = date.getFullYear();
           document.cookie = `username=${data?.list?.username}; expires=${day}, ${d} ${m} ${y} 12:00:00 UTC; path=/`;
+          document.cookie = `id_user=${data?.list?.id}; expires=${day}, ${d} ${m} ${y} 12:00:00 UTC; path=/`;
           window.location.replace('dashboard.html');
         } else {
           swal({

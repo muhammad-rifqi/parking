@@ -105,9 +105,9 @@
                 </li>
                 <li class="parent"><a href="#"><i class="icon mdi mdi-globe"></i><span>Upload</span></a>
                   <ul class="sub-menu">
-                    <li><a href="#">Upload</a>
+                    <li><a href="upload.html">Upload</a>
                     </li>
-                    <li><a href="#">History</a>
+                    <li><a href="history.html">History</a>
                     </li>
                   </ul>
                 </li>
@@ -716,6 +716,7 @@
         .then((willOut) => {
           if (willOut) {
             document.cookie = `username=${cookie['username']}; expires=Thu, 18 Dec 2013 12:00:00 UTC; path=/`;
+            document.cookie = `username=${cookie['id_user']}; expires=Thu, 18 Dec 2013 12:00:00 UTC; path=/`;
             window.location.replace('login.html');
           } else {
             console.log('NaN')
