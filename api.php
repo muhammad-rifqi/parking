@@ -172,4 +172,19 @@ if($_GET['act'] == 'avg_price'){
     echo json_encode(array("count"=> number_format($data['jml'], 2,'.', ',')));
 
 }
+
+
+if($_GET['act'] == 'weekly_time'){
+
+    header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Credentials: true");
+
+    $sql = mysqli_query($koneksi, "SELECT id,entry_start,duration FROM `tbl_transaction` where entry_start between '2023-12-30 14:20:00' and '2023-12-31 12:07:00'");
+    $rows = array();
+    while($data = mysqli_fetch_assoc($sql)){
+        $rows[] = $data;
+    }
+    echo json_encode(array("data"=> $rows));
+
+}
 ?>

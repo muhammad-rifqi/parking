@@ -176,7 +176,7 @@
                   <div class="data-info">
                     <div class="desc">Weekly Revenue</div>
                     <div class="value" id="qqq">
-                      
+
                     </div>
                     <div>
                       <span>Difference : -$4,257</span><br>
@@ -190,7 +190,7 @@
                   <div class="data-info">
                     <div class="desc">Weekly Transactions</div>
                     <div class="value" id="ppp">
-                     
+
                     </div>
                     <div>
                       <span>Difference : -1,021</span><br>
@@ -694,32 +694,44 @@
       }
 
       await fetch('api.php?act=all_gross')
-      .then(res => res.json())
-      .then((rrr)=>{
+        .then(res => res.json())
+        .then((rrr) => {
           let v = rrr?.amount.substr(0, 6);
-          let ganti = v.replace(".",",");
-          document.getElementById("tests").innerHTML = '<span style="font-size: 28pt; font-weight: bold;">$</span><span style="font-size: 28pt; font-weight: bold;">'+ganti+'</span>';
-      })
+          let ganti = v.replace(".", ",");
+          document.getElementById("tests").innerHTML = '<span style="font-size: 28pt; font-weight: bold;">$</span><span style="font-size: 28pt; font-weight: bold;">' + ganti + '</span>';
+        })
 
       await fetch('api.php?act=weekly_revenue')
-      .then(ress => ress.json())
-      .then((sss)=>{
+        .then(ress => ress.json())
+        .then((sss) => {
           let value = sss?.amount.substr(0, 6);
-          let chg = value.replace(".",",");
-          document.getElementById("qqq").innerHTML = '<span class="indicator indicator-negative mdi mdi-chevron-down"></span>$<span>'+chg+'</span>';
-      })
+          let chg = value.replace(".", ",");
+          document.getElementById("qqq").innerHTML = '<span class="indicator indicator-negative mdi mdi-chevron-down"></span>$<span>' + chg + '</span>';
+        })
 
       await fetch('api.php?act=weekly_transaction')
-      .then(respo => respo.json())
-      .then((rrrr)=>{
-          document.getElementById("ppp").innerHTML = '<span class="indicator indicator-equal mdi mdi-chevron-right"></span><span>'+rrrr?.count+'</span>';
-      })
+        .then(respo => respo.json())
+        .then((rrrr) => {
+          document.getElementById("ppp").innerHTML = '<span class="indicator indicator-equal mdi mdi-chevron-right"></span><span>' + rrrr?.count + '</span>';
+        })
 
       await fetch('api.php?act=avg_price')
-      .then(r => r.json())
-      .then((rr)=>{
-          document.getElementById("ppppp").innerText = '$'+rr?.count;
-      })
+        .then(r => r.json())
+        .then((rr) => {
+          document.getElementById("ppppp").innerText = '$' + rr?.count;
+        })
+
+
+      await fetch('api.php?act=weekly_time')
+        .then(w => w.json())
+        .then((ww) => {
+          let total1 = 0;
+          ww?.data?.forEach((element) => {
+            let duration = element.duration.split(".");
+            total1 += parseInt(duration[0]);
+          });
+
+        })
 
     });
 
