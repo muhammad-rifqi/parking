@@ -241,7 +241,7 @@
                     <div class="desc">Average weekly price per transactions</div>
                     <div class="value">
                       <span class="indicator indicator-positive mdi mdi-chevron-up"></span>
-                      <span>$22,72</span>
+                      <span id="ppppp"></span>
                     </div>
                     <div>
                       <span>Difference : $0,99</span><br>
@@ -713,6 +713,12 @@
       .then(respo => respo.json())
       .then((rrrr)=>{
           document.getElementById("ppp").innerHTML = '<span class="indicator indicator-equal mdi mdi-chevron-right"></span><span>'+rrrr?.count+'</span>';
+      })
+
+      await fetch('api.php?act=avg_price')
+      .then(r => r.json())
+      .then((rr)=>{
+          document.getElementById("ppppp").innerText = rr?.count;
       })
 
     });
