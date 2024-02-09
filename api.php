@@ -98,7 +98,10 @@ if($_GET['act'] == 'detail_site'){
     $rows = array();
     $sql = mysqli_query($koneksi, "select * from tbl_transaction where id_site = '".$_GET['id']."'");
     while($data = mysqli_fetch_assoc($sql)){
-        $formatter = new NumberFormatter('en_US',  NumberFormatter::CURRENCY);
+        //$formatter = new NumberFormatter('en_US',  NumberFormatter::CURRENCY);
+        // $formatter->formatCurrency(, 'USD')
+        // $formatter->formatCurrency($data['gross'], 'USD')
+        // $formatter->formatCurrency($data['net_rate'], 'USD')
         $rows[] = array(
             "id"=> $data['id'],
             "id_site"=> $data['id_site'],
@@ -106,9 +109,9 @@ if($_GET['act'] == 'detail_site'){
             "entry_start"=> $data['entry_start'],
             "entry_stop"=> $data['entry_stop'],
             "duration"=> $data['duration'],
-            "gross"=> $formatter->formatCurrency($data['gross'], 'USD'),
-            "fee"=> $formatter->formatCurrency($data['fee'], 'USD'),
-            "net_rate"=> $formatter->formatCurrency($data['net_rate'], 'USD'),
+            "gross"=> number_format($data['fee'], 2,'.', ','),
+            "fee"=> number_format($data['fee'], 2,'.', ','),
+            "net_rate"=> number_format($data['net_rate'], 2,'.', ','),
             "default_value"=> $data['default_value'],
             "number_plate"=> $data['number_plate'],
             "receipt"=> $data['receipt'],
@@ -125,10 +128,11 @@ if($_GET['act'] == 'all_gross'){
     header("Access-Control-Allow-Origin: *");
     header("Access-Control-Allow-Credentials: true");
 
-    $formatter = new NumberFormatter('en_US',  NumberFormatter::CURRENCY);
+    //$formatter = new NumberFormatter('en_US',  NumberFormatter::CURRENCY);
+    //$formatter->formatCurrency($data['jml'], 'USD')
     $sql = mysqli_query($koneksi, "SELECT SUM(gross) as jml FROM `tbl_transaction`");
     $data = mysqli_fetch_assoc($sql);
-    echo json_encode(array("amount"=> $formatter->formatCurrency($data['jml'], 'USD')));
+    echo json_encode(array("amount"=> number_format($data['jml'], 2,'.', ',')));
 
 }
 
@@ -138,10 +142,11 @@ if($_GET['act'] == 'weekly_revenue'){
     header("Access-Control-Allow-Origin: *");
     header("Access-Control-Allow-Credentials: true");
 
-    $formatter = new NumberFormatter('en_US',  NumberFormatter::CURRENCY);
+    //$formatter = new NumberFormatter('en_US',  NumberFormatter::CURRENCY);
+    // $formatter->formatCurrency($data['jml'], 'USD')
     $sql = mysqli_query($koneksi, "SELECT entry_start,SUM(gross) as jml FROM `tbl_transaction` where entry_start between '2023-12-30 14:20:00' and '2023-12-31 12:07:00'");
     $data = mysqli_fetch_assoc($sql);
-    echo json_encode(array("amount"=> $formatter->formatCurrency($data['jml'], 'USD')));
+    echo json_encode(array("amount"=> number_format($data['jml'], 2,'.', ',')));
 
 }
 
