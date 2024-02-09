@@ -718,7 +718,7 @@
       await fetch('api.php?act=avg_price')
       .then(r => r.json())
       .then((rr)=>{
-          document.getElementById("ppppp").innerText = rr?.count;
+          document.getElementById("ppppp").innerText = '$'+rr?.count;
       })
 
     });
