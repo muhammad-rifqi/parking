@@ -226,7 +226,7 @@
                     <div class="desc">Weekly Occupied Time</div>
                     <div class="value">
                       <span class="indicator indicator-negative mdi mdi-chevron-down"></span>
-                      <span>18,359.00h</span>
+                      <span id="wwwwww"></span>
                     </div>
                     <div>
                       <span>Difference : -10,472.35h</span><br>
@@ -726,11 +726,15 @@
         .then(w => w.json())
         .then((ww) => {
           let total1 = 0;
+          let total2 = 0;
+          let total3 = 0;
           ww?.data?.forEach((element) => {
             let duration = element.duration.split(".");
             total1 += parseInt(duration[0]);
+            total2 += parseInt(duration[1]);
+            total3 += parseInt(duration[2]);
           });
-
+          document.getElementById("wwwwww").innerText = '$' + total1 + ',' + total2 + ':' + total3 + 'h';
         })
 
     });
