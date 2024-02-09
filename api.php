@@ -161,4 +161,15 @@ if($_GET['act'] == 'weekly_transaction'){
     echo json_encode(array("count"=> number_format($data['jml'])));
 
 }
+
+if($_GET['act'] == 'avg_price'){
+
+    header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Credentials: true");
+
+    $sql = mysqli_query($koneksi, "SELECT CEIL(SUM(gross)/COUNT(gross)) as jml FROM `tbl_transaction`");
+    $data = mysqli_fetch_assoc($sql);
+    echo json_encode(array("count"=> number_format($data['jml'], 2,'.', ',')));
+
+}
 ?>
