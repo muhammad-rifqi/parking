@@ -13,7 +13,7 @@ function convert_tanggal($tanggal){
         
         $all_date = $tanggal." ".$jam;
     }else{
-        $all_date = new DateTime();
+        $all_date = new Date("Y-m-d H:i:s");
     }
 
     return $all_date;
