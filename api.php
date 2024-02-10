@@ -109,7 +109,7 @@ if($_GET['act'] == 'detail_site'){
             "entry_start"=> $data['entry_start'],
             "entry_stop"=> $data['entry_stop'],
             "duration"=> $data['duration'],
-            "gross"=> number_format($data['fee'], 2,'.', ','),
+            "gross"=> number_format($data['gross'], 2,'.', ','),
             "fee"=> number_format($data['fee'], 2,'.', ','),
             "net_rate"=> number_format($data['net_rate'], 2,'.', ','),
             "default_value"=> $data['default_value'],
