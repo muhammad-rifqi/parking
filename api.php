@@ -221,7 +221,7 @@ if($_GET['act'] == 'spark3'){
     header("Access-Control-Allow-Origin: *");
     header("Access-Control-Allow-Credentials: true");
     $rows = array();
-    $sql = mysqli_query($koneksi, "SELECT SUM(gross) as jml, entry_start FROM `tbl_transaction` GROUP BY entry_start ORDER BY entry_start limit 20 ");
+    $sql = mysqli_query($koneksi, "SELECT SUM(gross) as jml, entry_start FROM `tbl_transaction` GROUP BY entry_start ORDER BY entry_start limit 30 ");
     while($data = mysqli_fetch_assoc($sql)){
         $rows[] = $data['jml'];
     }
@@ -235,11 +235,28 @@ if($_GET['act'] == 'spark4'){
     header("Access-Control-Allow-Origin: *");
     header("Access-Control-Allow-Credentials: true");
     $rows = array();
-    $sql = mysqli_query($koneksi, "SELECT COUNT(gross) as jml, entry_start FROM `tbl_transaction` GROUP BY entry_start ORDER BY entry_start limit 20 ");
+    $sql = mysqli_query($koneksi, "SELECT COUNT(gross) as jml, entry_start FROM `tbl_transaction` GROUP BY entry_start ORDER BY entry_start limit 30 ");
     while($data = mysqli_fetch_assoc($sql)){
         $rows[] = $data['jml'];
     }
     echo json_encode($rows);
 
 }
+
+
+if($_GET['act'] == 'spark_all'){
+
+    header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Credentials: true");
+    $rows = array();
+    $no=1;
+    $sql = mysqli_query($koneksi, "SELECT SUM(gross) as jml, entry_start FROM `tbl_transaction` GROUP BY entry_start ORDER BY entry_start ");
+    while($data = mysqli_fetch_assoc($sql)){
+        $rows[] = array($no , intval($data['jml']));
+    $no++;
+    }
+    echo json_encode($rows);
+
+}
+
 ?>
