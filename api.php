@@ -96,7 +96,7 @@ if($_GET['act'] == 'detail_site'){
     header("Access-Control-Allow-Credentials: true");
 
     $rows = array();
-    $sql = mysqli_query($koneksi, "select * from tbl_transaction where id_site = '".$_GET['id']."'");
+    $sql = mysqli_query($koneksi, "select * from tbl_transaction where id_site = '".$_GET['id']."' limit 50");
     while($data = mysqli_fetch_assoc($sql)){
         //$formatter = new NumberFormatter('en_US',  NumberFormatter::CURRENCY);
         // $formatter->formatCurrency(, 'USD')
