@@ -81,7 +81,7 @@ var App = (function () {
         })
 
 
-        fetch('http://localhost/parking/api.php?act=spark2')
+      fetch('http://localhost/parking/api.php?act=spark2')
         .then(dd => dd.json())
         .then((dd) => {
           var www = dd.map(Number)
@@ -96,11 +96,11 @@ var App = (function () {
             barColor: color2
           });
 
-          
+
         })
 
-        
-        fetch('http://localhost/parking/api.php?act=spark3')
+
+      fetch('http://localhost/parking/api.php?act=spark3')
         .then(ddd => ddd.json())
         .then((ddd) => {
           var wwww = ddd.map(Number)
@@ -113,10 +113,10 @@ var App = (function () {
             lineColor: color3,
             xwidth: 18
           });
-          
+
         })
 
-        fetch('http://localhost/parking/api.php?act=spark4')
+      fetch('http://localhost/parking/api.php?act=spark4')
         .then(dddd => dddd.json())
         .then((dddd) => {
           var wwwww = dddd.map(Number)
@@ -133,11 +133,11 @@ var App = (function () {
             maxSpotColor: false,
             lineWidth: 1.15
           });
-              
+
         })
 
 
-        fetch('http://localhost/parking/api.php?act=spark3')
+      fetch('http://localhost/parking/api.php?act=spark3')
         .then(y => y.json())
         .then((yy) => {
           var yyy = yy.map(Number)
@@ -150,10 +150,10 @@ var App = (function () {
             lineColor: color3,
             xwidth: 18
           });
-          
+
         })
 
-        fetch('http://localhost/parking/api.php?act=spark4')
+      fetch('http://localhost/parking/api.php?act=spark4')
         .then(rr => rr.json())
         .then((rrrr) => {
           var rrrrrr = rrrr.map(Number)
@@ -170,10 +170,10 @@ var App = (function () {
             maxSpotColor: false,
             lineWidth: 1.15
           });
-              
+
         })
 
-        
+
     }
 
     //Main chart
@@ -183,110 +183,73 @@ var App = (function () {
       var color2 = tinycolor(App.color.primary).lighten(13).toString();
       var color3 = tinycolor(App.color.primary).lighten(20).toString();
 
-      var data = [
-        [1, 35],
-        [2, 60],
-        [3, 40],
-        [4, 65],
-        [5, 45],
-        [6, 75],
-        [7, 35],
-        [8, 40],
-        [9, 60]
-      ];
+      fetch('http://localhost/parking/api.php?act=spark_all')
+        .then(all => all.json())
+        .then((alls) => {
 
-      var data2 = [
-        [1, 20],
-        [2, 40],
-        [3, 25],
-        [4, 45],
-        [5, 25],
-        [6, 50],
-        [7, 35],
-        [8, 60],
-        [9, 30]
-      ];
+          var plot_statistics = $.plot("#main-chart",
+            [
+              {
+                data: alls,
+                canvasRender: true
+              }
+            ], {
+            series: {
+              lines: {
+                show: true,
+                lineWidth: 0,
+                fill: true,
+                fillColor: { colors: [{ opacity: 1 }, { opacity: 1 }] }
+              },
+              fillColor: "rgba(0, 0, 0, 1)",
+              shadowSize: 0,
+              curvedLines: {
+                apply: true,
+                active: true,
+                monotonicFit: true
+              }
+            },
+            legend: {
+              show: false
+            },
+            grid: {
+              show: true,
+              margin: {
+                top: 20,
+                bottom: 0,
+                left: 0,
+                right: 0,
+              },
+              labelMargin: 0,
+              minBorderMargin: 0,
+              axisMargin: 0,
+              tickColor: "rgba(0,0,0,0.05)",
+              borderWidth: 0,
+              hoverable: true,
+              clickable: true
+            },
+            colors: [color1, color2, color3],
+            xaxis: {
+              tickFormatter: function () {
+                return '';
+              },
+              autoscaleMargin: 0,
+              ticks: 11,
+              tickDecimals: 0,
+              tickLength: 0
+            },
+            yaxis: {
+              tickFormatter: function () {
+                return '';
+              },
+              //autoscaleMargin: 0.01,
+              ticks: 4,
+              tickDecimals: 0
+            }
+          });
 
-      var data3 = [
-        [1, 35],
-        [2, 15],
-        [3, 20],
-        [4, 30],
-        [5, 15],
-        [6, 18],
-        [7, 28],
-        [8, 10],
-        [9, 30]
-      ];
+        })
 
-      var plot_statistics = $.plot("#main-chart",
-        [
-          {
-            data: data,
-            canvasRender: true
-          },
-          {
-            data: data2,
-            canvasRender: true
-          },
-          {
-            data: data3,
-            canvasRender: true
-          }
-        ], {
-        series: {
-          lines: {
-            show: true,
-            lineWidth: 0,
-            fill: true,
-            fillColor: { colors: [{ opacity: 1 }, { opacity: 1 }] }
-          },
-          fillColor: "rgba(0, 0, 0, 1)",
-          shadowSize: 0,
-          curvedLines: {
-            apply: true,
-            active: true,
-            monotonicFit: true
-          }
-        },
-        legend: {
-          show: false
-        },
-        grid: {
-          show: true,
-          margin: {
-            top: 20,
-            bottom: 0,
-            left: 0,
-            right: 0,
-          },
-          labelMargin: 0,
-          minBorderMargin: 0,
-          axisMargin: 0,
-          tickColor: "rgba(0,0,0,0.05)",
-          borderWidth: 0,
-          hoverable: true,
-          clickable: true
-        },
-        colors: [color1, color2, color3],
-        xaxis: {
-          tickFormatter: function () {
-            return '';
-          },
-          autoscaleMargin: 0,
-          ticks: 11,
-          tickDecimals: 0,
-          tickLength: 0
-        },
-        yaxis: {
-          tickFormatter: function () {
-            return '';
-          },
-          //autoscaleMargin: 0.01,
-          ticks: 4,
-          tickDecimals: 0
-        }
-      });
 
       //Chart legend color setter
       $('[data-color="main-chart-color1"]').css({ 'background-color': color1 });

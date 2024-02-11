@@ -250,11 +250,12 @@ if($_GET['act'] == 'spark_all'){
     header("Access-Control-Allow-Credentials: true");
     $rows = array();
     $no=1;
-    $sql = mysqli_query($koneksi, "SELECT SUM(gross) as jml, entry_start FROM `tbl_transaction` GROUP BY entry_start ORDER BY entry_start ");
+    $sql = mysqli_query($koneksi, "SELECT SUM(gross) as jml, entry_start FROM `tbl_transaction` GROUP BY entry_start ORDER BY entry_start DESC limit 200");
     while($data = mysqli_fetch_assoc($sql)){
-        $rows[] = array($no , intval($data['jml']));
+        $rows[] = array($no,intval($data['jml']));
     $no++;
     }
+
     echo json_encode($rows);
 
 }
