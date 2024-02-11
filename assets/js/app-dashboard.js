@@ -137,6 +137,43 @@ var App = (function () {
         })
 
 
+        fetch('http://localhost/parking/api.php?act=spark3')
+        .then(y => y.json())
+        .then((yy) => {
+          var yyy = yy.map(Number)
+
+          $('#spark5').sparkline(yyy, {
+            type: 'discrete',
+            width: '85',
+            height: '35',
+            lineHeight: 20,
+            lineColor: color3,
+            xwidth: 18
+          });
+          
+        })
+
+        fetch('http://localhost/parking/api.php?act=spark4')
+        .then(rr => rr.json())
+        .then((rrrr) => {
+          var rrrrrr = rrrr.map(Number)
+
+          $('#spark6').sparkline(rrrrrr, {
+            width: '85',
+            height: '35',
+            lineColor: color4,
+            highlightSpotColor: color4,
+            highlightLineColor: color4,
+            fillColor: false,
+            spotColor: false,
+            minSpotColor: false,
+            maxSpotColor: false,
+            lineWidth: 1.15
+          });
+              
+        })
+
+        
     }
 
     //Main chart
