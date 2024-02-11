@@ -99,28 +99,44 @@ var App = (function () {
           
         })
 
-    
-      $('#spark3').sparkline([2, 3, 4, 5, 4, 3, 2, 3, 4, 5, 6, 5, 4, 3, 4, 5, 6, 5, 4, 4, 5], {
-        type: 'discrete',
-        width: '85',
-        height: '35',
-        lineHeight: 20,
-        lineColor: color3,
-        xwidth: 18
-      });
+        
+        fetch('http://localhost/parking/api.php?act=spark3')
+        .then(ddd => ddd.json())
+        .then((ddd) => {
+          var wwww = ddd.map(Number)
 
-      $('#spark4').sparkline([2, 5, 3, 7, 5, 10, 3, 6, 5, 7], {
-        width: '85',
-        height: '35',
-        lineColor: color4,
-        highlightSpotColor: color4,
-        highlightLineColor: color4,
-        fillColor: false,
-        spotColor: false,
-        minSpotColor: false,
-        maxSpotColor: false,
-        lineWidth: 1.15
-      });
+          $('#spark3').sparkline(wwww, {
+            type: 'discrete',
+            width: '85',
+            height: '35',
+            lineHeight: 20,
+            lineColor: color3,
+            xwidth: 18
+          });
+          
+        })
+
+        fetch('http://localhost/parking/api.php?act=spark4')
+        .then(dddd => dddd.json())
+        .then((dddd) => {
+          var wwwww = dddd.map(Number)
+
+          $('#spark4').sparkline(wwwww, {
+            width: '85',
+            height: '35',
+            lineColor: color4,
+            highlightSpotColor: color4,
+            highlightLineColor: color4,
+            fillColor: false,
+            spotColor: false,
+            minSpotColor: false,
+            maxSpotColor: false,
+            lineWidth: 1.15
+          });
+              
+        })
+
+
     }
 
     //Main chart
