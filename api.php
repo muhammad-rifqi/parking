@@ -47,7 +47,7 @@ if($_GET['act'] == 'insert_csv'){
     if (!empty($lokasi_file)) {
         $csvFile = fopen($_FILES['filecsv']['tmp_name'], 'r');
         // skip baris pertama
-        //str_replace(array('$','.'), array('',''),$gross)
+        //
         fgetcsv($csvFile);
             while (($getData = fgetcsv($csvFile, 10000, ",")) !== FALSE)
                 {
@@ -56,14 +56,14 @@ if($_GET['act'] == 'insert_csv'){
                     $entry_start = convert_tanggal($getData[2]);  
                     $entry_stop = convert_tanggal($getData[3]);           
                     $duration = $getData[4];
-                    $gross = $getData[5];
-                    $fee = $getData[6];
-                    $net_rate = $getData[7];
+                    $gross = str_replace(array('$','.'), array('',''),$getData[5]);
+                    $fee = str_replace(array('$','.'), array('',''),$getData[6]);
+                    $net_rate = str_replace(array('$','.'), array('',''),$getData[7]);
                     $number_plate = $getData[9];
                     $receipt = $getData[10];
                     $reference = $getData[11];
 
-                    $insert =  mysqli_query($koneksi, "insert into tbl_transaction (id_site,user_group, entry_start, entry_stop, duration, gross, fee, net_rate, number_plate, receipt, reference) VALUES ('" .$id_site. "', '" . $user_group . "', '" .$entry_start. "', '" .$entry_stop. "', '" .$duration. "', '" .str_replace('$','',$gross). "', '" .str_replace('$','',$fee). "', '" .str_replace('$','',$net_rate). "', '" .$number_plate. "', '" .$receipt. "' ,'" .$reference. "')");  
+                    $insert =  mysqli_query($koneksi, "insert into tbl_transaction (id_site,user_group, entry_start, entry_stop, duration, gross, fee, net_rate, number_plate, receipt, reference) VALUES ('" .$id_site. "', '" . $user_group . "', '" .$entry_start. "', '" .$entry_stop. "', '" .$duration. "', '" .$gross. "', '" .$fee. "', '" .$net_rate. "', '" .$number_plate. "', '" .$receipt. "' ,'" .$reference. "')");  
                         if($insert){
                             $response = ["message" => "success inserted"];
                         }else{
@@ -185,6 +185,34 @@ if($_GET['act'] == 'weekly_time'){
         $rows[] = $data;
     }
     echo json_encode(array("data"=> $rows));
+
+}
+
+if($_GET['act'] == 'spark1'){
+
+    header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Credentials: true");
+
+    $sql = mysqli_query($koneksi, "SELECT SUM(gross) as jml, entry_start FROM `tbl_transaction` GROUP BY entry_start ORDER BY entry_start limit 7;");
+    $rows = array();
+    while($data = mysqli_fetch_assoc($sql)){
+        $rows[] = $data['jml'];
+    }
+    echo json_encode($rows);
+
+}
+
+if($_GET['act'] == 'spark2'){
+
+    header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Credentials: true");
+
+    $sql = mysqli_query($koneksi, "SELECT COUNT(gross) as jml, entry_start FROM `tbl_transaction` GROUP BY entry_start ORDER BY entry_start limit 7;");
+    $rows = array();
+    while($data = mysqli_fetch_assoc($sql)){
+        $rows[] = $data['jml'];
+    }
+    echo json_encode($rows);
 
 }
 ?>
