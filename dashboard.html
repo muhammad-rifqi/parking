@@ -208,12 +208,12 @@
             <div class="row">
               <div class="col-md-6">
                 <div class="widget widget-tile">
-                  <div id="myfirstchart" style="height: 250px;"></div>
+                  <canvas id="chartjs1" style="width:100%;max-width:600px"></canvas>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="widget widget-tile">
-                  <div id="mysecondchart" style="height: 250px;"></div>
+                  <canvas id="chartjs2" style="width:100%;max-width:600px"></canvas>
                 </div>
               </div>
             </div>
@@ -259,12 +259,12 @@
             <div class="row">
               <div class="col-md-6">
                 <div class="widget widget-tile">
-                  <div id="mythirdchart" style="height: 250px;"></div>
+                  <canvas id="chartjs3" style="width:100%;max-width:600px"></canvas>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="widget widget-tile">
-                  <div id="myfourthchart" style="height: 250px;"></div>
+                  <canvas id="chartjs4" style="width:100%;max-width:600px"></canvas>
                 </div>
               </div>
             </div>
@@ -288,12 +288,12 @@
         <div class="row">
           <div class="col-md-6">
             <div class="widget widget-tile">
-              <div id="myfifthchart" style="height: 250px;"></div>
+              <canvas id="chartjs5" style="width:100%;max-width:600px"></canvas>
             </div>
           </div>
           <div class="col-md-6">
             <div class="widget widget-tile">
-              <div id="mysixthchart" style="height: 250px;"></div>
+              <canvas id="chartjs6" style="width:100%;max-width:600px"></canvas>
             </div>
           </div>
         </div>
@@ -307,7 +307,7 @@
                 </div><span class="title">Weekly Revenue</span>
               </div>
               <div class="widget-chart-container">
-                <div id="myseventhchart" style="height: 260px;"></div>
+                <canvas id="chartjs7" style="width:100%;max-width:600px"></canvas>
               </div>
               <div class="be-spinner">
                 <svg width="40px" height="40px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
@@ -622,6 +622,7 @@
   <script src="assets/lib/jqvmap/maps/jquery.vmap.world.js" type="text/javascript"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
 4 <script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
   <script src="assets/js/app-dashboard.js" type="text/javascript"></script>
   <script type="text/javascript">
 
@@ -630,6 +631,152 @@
       App.init();
       App.dashboard();
 
+    });
+
+    const xValues = [26,27,28,29,30,31,1];
+    const yValues = [7,8,8,9,9,9,10,11,14,14,15];
+
+    const x2Values = ['Parking Site 1'];
+    const y2Values = [7,8,8,9,9,9,10,11,14,14,15];
+
+    new Chart("chartjs1", {
+      type: "line",
+      data: {
+        labels: xValues,
+        datasets: [{
+          fill: false,
+          lineTension: 0,
+          backgroundColor: "rgba(0,0,255,1.0)",
+          borderColor: "rgba(0,0,255,0.1)",
+          data: yValues
+        }]
+      },
+      options: {
+        legend: {display: false},
+        scales: {
+          yAxes: [{ticks: {min: 6, max:16}}],
+        }
+      }
+    });
+
+    new Chart("chartjs2", {
+      type: "line",
+      data: {
+        labels: xValues,
+        datasets: [{
+          fill: false,
+          lineTension: 0,
+          backgroundColor: "rgba(0,0,255,1.0)",
+          borderColor: "rgba(0,0,255,0.1)",
+          data: yValues
+        }]
+      },
+      options: {
+        legend: {display: false},
+        scales: {
+          yAxes: [{ticks: {min: 6, max:16}}],
+        }
+      }
+    });
+
+    new Chart("chartjs3", {
+      type: "line",
+      data: {
+        labels: xValues,
+        datasets: [{
+          fill: false,
+          lineTension: 0,
+          backgroundColor: "rgba(0,0,255,1.0)",
+          borderColor: "rgba(0,0,255,0.1)",
+          data: yValues
+        }]
+      },
+      options: {
+        legend: {display: false},
+        scales: {
+          yAxes: [{ticks: {min: 6, max:16}}],
+        }
+      }
+    });
+
+    new Chart("chartjs4", {
+      type: "line",
+      data: {
+        labels: xValues,
+        datasets: [{
+          fill: false,
+          lineTension: 0,
+          backgroundColor: "rgba(0,0,255,1.0)",
+          borderColor: "rgba(0,0,255,0.1)",
+          data: yValues
+        }]
+      },
+      options: {
+        legend: {display: false},
+        scales: {
+          yAxes: [{ticks: {min: 6, max:16}}],
+        }
+      }
+    });
+
+    new Chart("chartjs5", {
+      type: "bar",
+      data: {
+        labels: x2Values,
+        datasets: [{
+          fill: false,
+          lineTension: 0,
+          backgroundColor: "rgba(0,0,255,1.0)",
+          borderColor: "rgba(0,0,255,0.1)",
+          data: yValues
+        }]
+      },
+      options: {
+        legend: {display: false},
+        scales: {
+          yAxes: [{ticks: {min: 6, max:16}}],
+        }
+      }
+    });
+
+    new Chart("chartjs6", {
+      type: "bar",
+      data: {
+        labels: x2Values,
+        datasets: [{
+          fill: false,
+          lineTension: 0,
+          backgroundColor: "rgba(0,0,255,1.0)",
+          borderColor: "rgba(0,0,255,0.1)",
+          data: yValues
+        }]
+      },
+      options: {
+        legend: {display: false},
+        scales: {
+          yAxes: [{ticks: {min: 6, max:16}}],
+        }
+      }
+    });
+
+    new Chart("chartjs7", {
+      type: "line",
+      data: {
+        labels: xValues,
+        datasets: [{
+          fill: false,
+          lineTension: 0,
+          backgroundColor: "rgba(0,0,255,1.0)",
+          borderColor: "rgba(0,0,255,0.1)",
+          data: yValues
+        }]
+      },
+      options: {
+        legend: {display: false},
+        scales: {
+          yAxes: [{ticks: {min: 6, max:16}}],
+        }
+      }
     });
 
     new Morris.Line({
