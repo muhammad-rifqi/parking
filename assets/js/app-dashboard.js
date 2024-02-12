@@ -59,7 +59,7 @@ var App = (function () {
       var color3 = App.color.success;
       var color4 = App.color.danger;
 
-      fetch('http://localhost/parking/api.php?act=spark1')
+      fetch('http://localhost/parking/parking/api.php?act=spark1')
         .then(r => r.json())
         .then((rr) => {
           var bbb = rr.map(Number)
@@ -81,7 +81,11 @@ var App = (function () {
         })
 
 
+<<<<<<< Updated upstream
       fetch('http://localhost/parking/api.php?act=spark2')
+=======
+        fetch('http://localhost/parking/parking/api.php?act=spark2')
+>>>>>>> Stashed changes
         .then(dd => dd.json())
         .then((dd) => {
           var www = dd.map(Number)
@@ -99,8 +103,13 @@ var App = (function () {
 
         })
 
+<<<<<<< Updated upstream
 
       fetch('http://localhost/parking/api.php?act=spark3')
+=======
+        
+        fetch('http://localhost/parking/parking/api.php?act=spark3')
+>>>>>>> Stashed changes
         .then(ddd => ddd.json())
         .then((ddd) => {
           var wwww = ddd.map(Number)
@@ -116,7 +125,11 @@ var App = (function () {
 
         })
 
+<<<<<<< Updated upstream
       fetch('http://localhost/parking/api.php?act=spark4')
+=======
+        fetch('http://localhost/parking/parking/api.php?act=spark4')
+>>>>>>> Stashed changes
         .then(dddd => dddd.json())
         .then((dddd) => {
           var wwwww = dddd.map(Number)
