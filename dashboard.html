@@ -663,7 +663,8 @@
         .then((rrr) => {
           let v = rrr?.amount.substr(0, 6);
           let ganti = v.replace(".", ",");
-          document.getElementById("tests").innerHTML = '<span style="font-size: 28pt; font-weight: bold;">$</span><span style="font-size: 28pt; font-weight: bold;">' + ganti + '</span>';
+          let lastCommaRemoved = ganti.replace(/,*$/, '');
+          document.getElementById("tests").innerHTML = '<span style="font-size: 28pt; font-weight: bold;">$</span><span style="font-size: 28pt; font-weight: bold;">' + lastCommaRemoved + '</span>';
         })
 
       await fetch('api.php?act=weekly_revenue')
