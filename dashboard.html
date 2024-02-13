@@ -160,9 +160,9 @@
             <div class="widget widget-tile">
               <div class="data-info">
                 <div class="desc" style="float: left;">Total Revenue</div>
-                  <div class="value">
-                    <center id="tests"></center>
-                  </div>
+                <div class="value">
+                  <center id="tests"></center>
+                </div>
               </div>
             </div>
           </div>
@@ -307,7 +307,7 @@
                 </div><span class="title">Weekly Revenue</span>
               </div>
               <div class="widget-chart-container">
-                <canvas id="chartjs7" style="width:100%;max-width:600px"></canvas>
+                <canvas id="chartjs7" style="width:100%;"></canvas>
               </div>
               <div class="be-spinner">
                 <svg width="40px" height="40px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
@@ -621,7 +621,8 @@
   <script src="assets/lib/jqvmap/jquery.vmap.min.js" type="text/javascript"></script>
   <script src="assets/lib/jqvmap/maps/jquery.vmap.world.js" type="text/javascript"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
-4 <script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
+  4
+  <script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
   <script src="assets/js/app-dashboard.js" type="text/javascript"></script>
   <script type="text/javascript">
@@ -633,298 +634,6 @@
 
     });
 
-    const xValues = [26,27,28,29,30,31,1];
-    const yValues = [7,8,8,9,9,9,10,11,14,14,15];
-
-    const x2Values = ['Parking Site 1'];
-    const y2Values = [7,8,8,9,9,9,10,11,14,14,15];
-
-    new Chart("chartjs1", {
-      type: "line",
-      data: {
-        labels: xValues,
-        datasets: [{
-          fill: false,
-          lineTension: 0,
-          backgroundColor: "rgba(0,0,255,1.0)",
-          borderColor: "rgba(0,0,255,0.1)",
-          data: yValues
-        }]
-      },
-      options: {
-        legend: {display: false},
-        scales: {
-          yAxes: [{ticks: {min: 6, max:16}}],
-        }
-      }
-    });
-
-    new Chart("chartjs2", {
-      type: "line",
-      data: {
-        labels: xValues,
-        datasets: [{
-          fill: false,
-          lineTension: 0,
-          backgroundColor: "rgba(0,0,255,1.0)",
-          borderColor: "rgba(0,0,255,0.1)",
-          data: yValues
-        }]
-      },
-      options: {
-        legend: {display: false},
-        scales: {
-          yAxes: [{ticks: {min: 6, max:16}}],
-        }
-      }
-    });
-
-    new Chart("chartjs3", {
-      type: "line",
-      data: {
-        labels: xValues,
-        datasets: [{
-          fill: false,
-          lineTension: 0,
-          backgroundColor: "rgba(0,0,255,1.0)",
-          borderColor: "rgba(0,0,255,0.1)",
-          data: yValues
-        }]
-      },
-      options: {
-        legend: {display: false},
-        scales: {
-          yAxes: [{ticks: {min: 6, max:16}}],
-        }
-      }
-    });
-
-    new Chart("chartjs4", {
-      type: "line",
-      data: {
-        labels: xValues,
-        datasets: [{
-          fill: false,
-          lineTension: 0,
-          backgroundColor: "rgba(0,0,255,1.0)",
-          borderColor: "rgba(0,0,255,0.1)",
-          data: yValues
-        }]
-      },
-      options: {
-        legend: {display: false},
-        scales: {
-          yAxes: [{ticks: {min: 6, max:16}}],
-        }
-      }
-    });
-
-    new Chart("chartjs5", {
-      type: "bar",
-      data: {
-        labels: x2Values,
-        datasets: [{
-          fill: false,
-          lineTension: 0,
-          backgroundColor: "rgba(0,0,255,1.0)",
-          borderColor: "rgba(0,0,255,0.1)",
-          data: yValues
-        }]
-      },
-      options: {
-        legend: {display: false},
-        scales: {
-          yAxes: [{ticks: {min: 6, max:16}}],
-        }
-      }
-    });
-
-    new Chart("chartjs6", {
-      type: "bar",
-      data: {
-        labels: x2Values,
-        datasets: [{
-          fill: false,
-          lineTension: 0,
-          backgroundColor: "rgba(0,0,255,1.0)",
-          borderColor: "rgba(0,0,255,0.1)",
-          data: yValues
-        }]
-      },
-      options: {
-        legend: {display: false},
-        scales: {
-          yAxes: [{ticks: {min: 6, max:16}}],
-        }
-      }
-    });
-
-    new Chart("chartjs7", {
-      type: "line",
-      data: {
-        labels: xValues,
-        datasets: [{
-          fill: false,
-          lineTension: 0,
-          backgroundColor: "rgba(0,0,255,1.0)",
-          borderColor: "rgba(0,0,255,0.1)",
-          data: yValues
-        }]
-      },
-      options: {
-        legend: {display: false},
-        scales: {
-          yAxes: [{ticks: {min: 6, max:16}}],
-        }
-      }
-    });
-
-    new Morris.Line({
-      // ID of the element in which to draw the chart.
-      element: 'myfirstchart',
-      // Chart data records -- each entry in this array corresponds to a point on
-      // the chart.
-      data: [
-        { year: '2008', value: 1 },
-        { year: '2009', value: 2 },
-        { year: '2010', value: 3 },
-        { year: '2011', value: 2 },
-        { year: '2012', value: 2 }
-      ],
-      // The name of the data record attribute that contains x-values.
-      xkey: 'year',
-      // A list of names of data record attributes that contain y-values.
-      ykeys: ['value'],
-      // Labels for the ykeys -- will be displayed when you hover over the
-      // chart.
-      labels: ['Value']
-    });
-
-    new Morris.Line({
-      // ID of the element in which to draw the chart.
-      element: 'mysecondchart',
-      // Chart data records -- each entry in this array corresponds to a point on
-      // the chart.
-      data: [
-        { year: '2008', value: 1 },
-        { year: '2009', value: 2 },
-        { year: '2010', value: 3 },
-        { year: '2011', value: 2 },
-        { year: '2012', value: 2 }
-      ],
-      // The name of the data record attribute that contains x-values.
-      xkey: 'year',
-      // A list of names of data record attributes that contain y-values.
-      ykeys: ['value'],
-      // Labels for the ykeys -- will be displayed when you hover over the
-      // chart.
-      labels: ['Value']
-    });
-
-    new Morris.Line({
-      // ID of the element in which to draw the chart.
-      element: 'mythirdchart',
-      // Chart data records -- each entry in this array corresponds to a point on
-      // the chart.
-      data: [
-        { year: '2008', value: 1 },
-        { year: '2009', value: 2 },
-        { year: '2010', value: 3 },
-        { year: '2011', value: 2 },
-        { year: '2012', value: 2 }
-      ],
-      // The name of the data record attribute that contains x-values.
-      xkey: 'year',
-      // A list of names of data record attributes that contain y-values.
-      ykeys: ['value'],
-      // Labels for the ykeys -- will be displayed when you hover over the
-      // chart.
-      labels: ['Value']
-    });
-
-    new Morris.Line({
-      // ID of the element in which to draw the chart.
-      element: 'myfourthchart',
-      // Chart data records -- each entry in this array corresponds to a point on
-      // the chart.
-      data: [
-        { year: '2008', value: 1 },
-        { year: '2009', value: 2 },
-        { year: '2010', value: 3 },
-        { year: '2011', value: 2 },
-        { year: '2012', value: 2 }
-      ],
-      // The name of the data record attribute that contains x-values.
-      xkey: 'year',
-      // A list of names of data record attributes that contain y-values.
-      ykeys: ['value'],
-      // Labels for the ykeys -- will be displayed when you hover over the
-      // chart.
-      labels: ['Value']
-    });
-
-    new Morris.Bar({
-      // ID of the element in which to draw the chart.
-      element: 'myfifthchart',
-      // Chart data records -- each entry in this array corresponds to a point on
-      // the chart.
-      data: [
-        { year: '2008', value: 1 },
-        { year: '2009', value: 2 },
-        { year: '2010', value: 3 },
-        { year: '2011', value: 2 },
-        { year: '2012', value: 2 }
-      ],
-      // The name of the data record attribute that contains x-values.
-      xkey: 'year',
-      // A list of names of data record attributes that contain y-values.
-      ykeys: ['value'],
-      // Labels for the ykeys -- will be displayed when you hover over the
-      // chart.
-      labels: ['Value']
-    });
-
-    new Morris.Bar({
-      // ID of the element in which to draw the chart.
-      element: 'mysixthchart',
-      // Chart data records -- each entry in this array corresponds to a point on
-      // the chart.
-      data: [
-        { year: '2008', value: 1 },
-        { year: '2009', value: 2 },
-        { year: '2010', value: 3 },
-        { year: '2011', value: 2 },
-        { year: '2012', value: 2 }
-      ],
-      // The name of the data record attribute that contains x-values.
-      xkey: 'year',
-      // A list of names of data record attributes that contain y-values.
-      ykeys: ['value'],
-      // Labels for the ykeys -- will be displayed when you hover over the
-      // chart.
-      labels: ['Value']
-    });
-
-    new Morris.Line({
-      // ID of the element in which to draw the chart.
-      element: 'myseventhchart',
-      // Chart data records -- each entry in this array corresponds to a point on
-      // the chart.
-      data: [
-        { year: '2008', value: 1 },
-        { year: '2009', value: 2 },
-        { year: '2010', value: 3 },
-        { year: '2011', value: 2 },
-        { year: '2012', value: 2 }
-      ],
-      // The name of the data record attribute that contains x-values.
-      xkey: 'year',
-      // A list of names of data record attributes that contain y-values.
-      ykeys: ['value'],
-      // Labels for the ykeys -- will be displayed when you hover over the
-      // chart.
-      labels: ['Value']
-    });
 
     document.addEventListener("DOMContentLoaded", async (e) => {
       let cookie = {};
@@ -938,11 +647,12 @@
       if (!cookie['username']) {
         window.location.replace('login.html');
       } else {
-        let url = 'api.php?act=profile&un=' + cookie['username'];
+        let url = 'http://localhost/parking/api.php?act=profile&un=' + cookie['username'];
         await fetch(url)
           .then(response => response.json())
           .then((data) => {
             document.getElementById("usernames").innerText = data?.username.toUpperCase();
+            console.log(data)
           }).catch((error) => {
             console.log(error)
           })
@@ -990,6 +700,247 @@
             total3 += parseInt(duration[2]);
           });
           document.getElementById("wwwwww").innerText = '' + total1 + ',' + total2 + ':' + total3 + 'h';
+        })
+
+
+
+      fetch('http://localhost/parking/api.php?act=spark1')
+        .then(r => r.json())
+        .then((rr) => {
+          var XXX = []
+          var YYY = []
+          for (var i = 0; i < rr.length; i++) {
+            XXX.push(rr[i]?.[0]);
+            YYY.push(rr[i]?.[1])
+          }
+
+          new Chart("chartjs1", {
+            type: "line",
+            data: {
+              labels: XXX.map(Number),
+              datasets: [{
+                fill: false,
+                lineTension: 0,
+                backgroundColor: "rgba(0,0,255,1.0)",
+                borderColor: "rgba(0,0,255,0.1)",
+                data: YYY.map(Number)
+              }]
+            },
+            options: {
+              legend: { display: false },
+              scales: {
+                yAxes: [{ ticks: { min: 0, max: 20000 } }],
+              }
+            }
+          });
+        })
+
+
+      fetch('http://localhost/parking/api.php?act=spark2')
+        .then(dd => dd.json())
+        .then((dd) => {
+
+          var XX = []
+          var YY = []
+          for (var i = 0; i < dd.length; i++) {
+            XX.push(dd[i]?.[0]);
+            YY.push(dd[i]?.[1])
+          }
+
+          new Chart("chartjs2", {
+            type: "line",
+            data: {
+              labels: XX.map(Number),
+              datasets: [{
+                fill: false,
+                lineTension: 0,
+                backgroundColor: "rgba(0,0,255,1.0)",
+                borderColor: "rgba(0,0,255,0.1)",
+                data: YY.map(Number)
+              }]
+            },
+            options: {
+              legend: { display: false },
+              scales: {
+                yAxes: [{ ticks: { min: 0, max: 5 } }],
+              }
+            }
+          });
+
+
+        })
+
+
+      fetch('http://localhost/parking/api.php?act=spark3')
+        .then(ddd => ddd.json())
+        .then((ddd) => {
+
+          var XXS = []
+          var YYS = []
+          for (var i = 0; i < ddd.length; i++) {
+            XXS.push(ddd[i]?.[0]);
+            YYS.push(ddd[i]?.[1])
+          }
+
+
+          new Chart("chartjs3", {
+            type: "line",
+            data: {
+              labels: XXS.map(Number),
+              datasets: [{
+                fill: false,
+                lineTension: 0,
+                backgroundColor: "rgba(0,0,255,1.0)",
+                borderColor: "rgba(0,0,255,0.1)",
+                data: YYS.map(Number)
+              }]
+            },
+            options: {
+              legend: { display: false },
+              scales: {
+                yAxes: [{ ticks: { min: 0, max: 20000 } }],
+              }
+            }
+          });
+
+
+        })
+
+      fetch('http://localhost/parking/api.php?act=spark4')
+        .then(dddd => dddd.json())
+        .then((dddd) => {
+
+          var XXSS = []
+          var YYSS = []
+          for (var i = 0; i < dddd.length; i++) {
+            XXSS.push(dddd[i]?.[0]);
+            YYSS.push(dddd[i]?.[1])
+          }
+
+
+          new Chart("chartjs4", {
+            type: "line",
+            data: {
+              labels: XXSS.map(Number),
+              datasets: [{
+                fill: false,
+                lineTension: 0,
+                backgroundColor: "rgba(0,0,255,1.0)",
+                borderColor: "rgba(0,0,255,0.1)",
+                data: YYSS.map(Number)
+              }]
+            },
+            options: {
+              legend: { display: false },
+              scales: {
+                yAxes: [{ ticks: { min: 0, max: 5 } }],
+              }
+            }
+          });
+
+
+        })
+
+
+
+
+      fetch('http://localhost/parking/api.php?act=spark5')
+        .then(y => y.json())
+        .then((yy) => {
+
+          var XXSSB = []
+          var YYSSB = []
+          for (var i = 0; i < yy.length; i++) {
+            XXSSB.push(yy[i]?.[0]);
+            YYSSB.push(yy[i]?.[1])
+          }
+
+          new Chart("chartjs5", {
+            type: "bar",
+            data: {
+              labels: XXSSB.map(Number),
+              datasets: [{
+                fill: false,
+                lineTension: 0,
+                backgroundColor: "rgba(0,0,255,1.0)",
+                borderColor: "rgba(0,0,255,0.1)",
+                data: YYSSB.map(Number)
+              }]
+            },
+            options: {
+              legend: { display: false },
+              scales: {
+                yAxes: [{ ticks: { min: 0, max: 20000 } }],
+              }
+            }
+          });
+
+
+        })
+
+      fetch('http://localhost/parking/api.php?act=spark6')
+        .then(rr => rr.json())
+        .then((rrrr) => {
+
+          var XXSSB1 = []
+          var YYSSB1 = []
+          for (var i = 0; i < rrrr.length; i++) {
+            XXSSB1.push(rrrr[i]?.[0]);
+            YYSSB1.push(rrrr[i]?.[1])
+          }
+
+          new Chart("chartjs6", {
+            type: "bar",
+            data: {
+              labels: XXSSB1.map(Number),
+              datasets: [{
+                fill: false,
+                lineTension: 0,
+                backgroundColor: "rgba(0,0,255,1.0)",
+                borderColor: "rgba(0,0,255,0.1)",
+                data: YYSSB1.map(Number)
+              }]
+            },
+            options: {
+              legend: { display: false },
+              scales: {
+                yAxes: [{ ticks: { min: 0, max: 5 } }],
+              }
+            }
+          });
+        })
+
+      fetch('http://localhost/parking/api.php?act=spark_all')
+        .then(qqq => qqq.json())
+        .then((qqqq) => {
+
+          var XXSSB12 = []
+          var YYSSB12 = []
+          for (var i = 0; i < qqqq.length; i++) {
+            XXSSB12.push(qqqq[i]?.[0]);
+            YYSSB12.push(qqqq[i]?.[1])
+          }
+
+          new Chart("chartjs7", {
+            type: "line",
+            data: {
+              labels: XXSSB12.map(Number),
+              datasets: [{
+                fill: false,
+                lineTension: 0,
+                backgroundColor: "rgba(0,0,255,1.0)",
+                borderColor: "rgba(0,0,255,0.1)",
+                data: YYSSB12.map(Number)
+              }]
+            },
+            options: {
+              legend: { display: false },
+              scales: {
+                yAxes: [{ ticks: { min: 0, max: 21000 } }],
+              }
+            }
+          });
+
         })
 
     });

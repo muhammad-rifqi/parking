@@ -196,7 +196,8 @@ if($_GET['act'] == 'spark1'){
     $sql = mysqli_query($koneksi, "SELECT SUM(gross) as jml, entry_start FROM `tbl_transaction` GROUP BY entry_start ORDER BY entry_start limit 7 ");
     $rows = array();
     while($data = mysqli_fetch_assoc($sql)){
-        $rows[] = $data['jml'];
+        $pecah = explode(" ",$data['entry_start']);
+        $rows[] = array(substr($pecah[0],8,2), $data['jml']);
     }
     echo json_encode($rows);
 
@@ -210,7 +211,8 @@ if($_GET['act'] == 'spark2'){
     $sql = mysqli_query($koneksi, "SELECT COUNT(gross) as jml, entry_start FROM `tbl_transaction` GROUP BY entry_start ORDER BY entry_start limit 7 ");
     $rows = array();
     while($data = mysqli_fetch_assoc($sql)){
-        $rows[] = $data['jml'];
+        $pecah = explode(" ",$data['entry_start']);
+        $rows[] = array(substr($pecah[0],8,2), $data['jml']);
     }
     echo json_encode($rows);
 
@@ -223,7 +225,8 @@ if($_GET['act'] == 'spark3'){
     $rows = array();
     $sql = mysqli_query($koneksi, "SELECT SUM(gross) as jml, entry_start FROM `tbl_transaction` GROUP BY entry_start ORDER BY entry_start limit 30 ");
     while($data = mysqli_fetch_assoc($sql)){
-        $rows[] = $data['jml'];
+        $pecah = explode(" ",$data['entry_start']);
+        $rows[] = array(substr($pecah[0],8,2), $data['jml']);
     }
     echo json_encode($rows);
 
@@ -237,11 +240,43 @@ if($_GET['act'] == 'spark4'){
     $rows = array();
     $sql = mysqli_query($koneksi, "SELECT COUNT(gross) as jml, entry_start FROM `tbl_transaction` GROUP BY entry_start ORDER BY entry_start limit 30 ");
     while($data = mysqli_fetch_assoc($sql)){
-        $rows[] = $data['jml'];
+        $pecah = explode(" ",$data['entry_start']);
+        $rows[] = array(substr($pecah[0],8,2), $data['jml']);
     }
     echo json_encode($rows);
 
 }
+
+
+if($_GET['act'] == 'spark5'){
+
+    header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Credentials: true");
+    $rows = array();
+    $sql = mysqli_query($koneksi, "SELECT SUM(gross) as jml, entry_start FROM `tbl_transaction` GROUP BY entry_start ORDER BY entry_start limit 30 ");
+    while($data = mysqli_fetch_assoc($sql)){
+        $pecah = explode(" ",$data['entry_start']);
+        $rows[] = array(substr($pecah[0],8,2), $data['jml']);
+    }
+    echo json_encode($rows);
+
+}
+
+
+if($_GET['act'] == 'spark6'){
+
+    header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Credentials: true");
+    $rows = array();
+    $sql = mysqli_query($koneksi, "SELECT COUNT(gross) as jml, entry_start FROM `tbl_transaction` GROUP BY entry_start ORDER BY entry_start limit 30 ");
+    while($data = mysqli_fetch_assoc($sql)){
+        $pecah = explode(" ",$data['entry_start']);
+        $rows[] = array(substr($pecah[0],8,2), $data['jml']);
+    }
+    echo json_encode($rows);
+
+}
+
 
 
 if($_GET['act'] == 'spark_all'){
@@ -250,7 +285,7 @@ if($_GET['act'] == 'spark_all'){
     header("Access-Control-Allow-Credentials: true");
     $rows = array();
     $no=1;
-    $sql = mysqli_query($koneksi, "SELECT SUM(gross) as jml, entry_start FROM `tbl_transaction` GROUP BY entry_start ORDER BY entry_start DESC limit 200");
+    $sql = mysqli_query($koneksi, "SELECT SUM(gross) as jml, entry_start FROM `tbl_transaction` GROUP BY entry_start ORDER BY entry_start DESC");
     while($data = mysqli_fetch_assoc($sql)){
         $rows[] = array($no,intval($data['jml']));
     $no++;
