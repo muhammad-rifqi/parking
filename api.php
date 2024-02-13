@@ -287,7 +287,8 @@ if($_GET['act'] == 'spark_all'){
     $no=1;
     $sql = mysqli_query($koneksi, "SELECT SUM(gross) as jml, entry_start FROM `tbl_transaction` GROUP BY entry_start ORDER BY entry_start DESC");
     while($data = mysqli_fetch_assoc($sql)){
-        $rows[] = array($no,intval($data['jml']));
+        $pecah = explode(" ",$data['entry_start']);
+        $rows[] = array(substr($pecah[0],8,2), $data['jml']);
     $no++;
     }
 
